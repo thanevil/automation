@@ -6,8 +6,8 @@ services:
     environment:
       VERSION: "win10"
       RAM_SIZE: "8G"
-    devices:
-      - /dev/kvm
+#    devices:
+#      - /dev/kvm
     cap_add:
       - NET_ADMIN
     ports:
@@ -23,8 +23,8 @@ services:
     environment:
       VERSION: "win11"
       RAM_SIZE: "8G"
-    devices:
-      - /dev/kvm
+#    devices:
+#      - /dev/kvm
     cap_add:
       - NET_ADMIN
     ports:
@@ -40,8 +40,8 @@ services:
     environment:
       VERSION: "2022"
       RAM_SIZE: "8G"
-    devices:
-      - /dev/kvm
+#    devices:
+#      - /dev/kvm
     cap_add:
       - NET_ADMIN
     ports:
