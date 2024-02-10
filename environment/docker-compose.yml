@@ -2,7 +2,7 @@ version: '3.8'
 services:
   windows_10:
     image: dockurr/windows
-    container_name: windows
+    container_name: windows10
     environment:
       VERSION: "win10"
       RAM_SIZE: "8G"
@@ -19,7 +19,7 @@ services:
 
   windows_11:
     image: dockurr/windows
-    container_name: windows
+    container_name: windows11
     environment:
       VERSION: "win11"
       RAM_SIZE: "8G"
@@ -36,7 +36,7 @@ services:
 
   windows_server_2022:
     image: dockurr/windows
-    container_name: windows
+    container_name: windows22
     environment:
       VERSION: "2022"
       RAM_SIZE: "8G"
