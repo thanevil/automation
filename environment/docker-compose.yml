@@ -6,6 +6,7 @@ services:
     environment:
       VERSION: "win10"
       RAM_SIZE: "8G"
+      KVM: "N"
 #    devices:
 #      - /dev/kvm
     cap_add:
@@ -23,6 +24,7 @@ services:
     environment:
       VERSION: "win11"
       RAM_SIZE: "8G"
+      KVM: "N"
 #    devices:
 #      - /dev/kvm
     cap_add:
@@ -40,6 +42,7 @@ services:
     environment:
       VERSION: "2022"
       RAM_SIZE: "8G"
+      KVM: "N"
 #    devices:
 #      - /dev/kvm
     cap_add:
