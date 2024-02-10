@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  windows_10:
+    image: dockurr/windows
+    container_name: windows
+    environment:
+      VERSION: "win10"
+      RAM_SIZE: "8G"
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8001:8006
+      - 33891:3389/tcp
+      - 33891:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure
+
+  windows_11:
+    image: dockurr/windows
+    container_name: windows
+    environment:
+      VERSION: "win11"
+      RAM_SIZE: "8G"
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8002:8006
+      - 33892:3389/tcp
+      - 33892:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure
+
+  windows_server_2022:
+    image: dockurr/windows
+    container_name: windows
+    environment:
+      VERSION: "2022"
+      RAM_SIZE: "8G"
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8003:8006
+      - 33893:3389/tcp
+      - 33893:3389/udp
+    stop_grace_period: 2m
+    restart: on-failure
+
+networks:
+  default:
+    driver: nat
