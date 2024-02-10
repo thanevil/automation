@@ -4,6 +4,6 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                 bat 'dir'
-                bat 'docker compose up -d D:\jenkins\automation\workspace\first_pipeline\environment\docker-compose.yml'
+                bat 'docker compose up -d D:\\jenkins\\automation\\workspace\\first_pipeline\\environment\\docker-compose.yml'
             }
 }}}
