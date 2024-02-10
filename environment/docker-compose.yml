@@ -50,7 +50,3 @@ services:
       - 33893:3389/udp
     stop_grace_period: 2m
     restart: on-failure
-
-networks:
-  default:
-    driver: nat
