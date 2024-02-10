@@ -5,8 +5,8 @@ pipeline {
             steps {
                 bat 'dir'
                 bat '''
-                docker-compose build -f D:\\jenkins\\automation\\workspace\\first_pipeline\\environment\\docker-compose.yml
-                docker-compose up -d -f D:\\jenkins\\automation\\workspace\\first_pipeline\\environment\\docker-compose.yml
+                docker-compose -f D:\\jenkins\\automation\\workspace\\first_pipeline\\environment\\docker-compose.yml build
+                docker-compose -f D:\\jenkins\\automation\\workspace\\first_pipeline\\environment\\docker-compose.yml up -d
                 '''
             }
 }}}
