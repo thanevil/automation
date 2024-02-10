@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('Build and Deploy') {
             steps {
-                git "https://github.com/thanevil/automation.git"
-                // Additional steps for AD setup and IP configuration
                 bat 'dir'
+                bat 'docker compose up -d D:\jenkins\automation\workspace\first_pipeline\environment\docker-compose.yml'
             }
 }}}
