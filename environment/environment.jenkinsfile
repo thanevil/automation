@@ -1,25 +1,10 @@
 pipeline {
+    agent {label 'win10'}
     stages {
         stage('Build and Deploy') {
             steps {
-                sh 'docker-compose up -d'
+                git "https://github.com/thanevil/automation.git"
                 // Additional steps for AD setup and IP configuration
+                bat 'dir'
             }
-        }
-        stage('Run Tests') {
-            steps {
-                // Script to execute pytest on Windows containers
-            }
-        }
-        stage('Collect Reports') {
-            steps {
-                // Script to collect test reports
-            }
-        }
-    }
-    post {
-        always {
-            // Steps for Kibana dashboard setup
-        }
-    }
-}
+}}}
