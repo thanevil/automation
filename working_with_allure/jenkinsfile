@@ -4,8 +4,7 @@ pipeline {
         stage('e2e tests') {
             steps {
                 bat 'python -m pytest D:\\jenkins\\automation\\workspace\\allure_testing\\working_with_allure\\test_dummy.py --alluredir D:\\allure_testing\\allure_results'
-            }
-}}
+            }}
         stage('reports') {
             steps {
                 bat 'xcopy D:\\allure_testing\\allure_results Z:\\allure-reports\\working_with_allure'
@@ -17,10 +16,8 @@ pipeline {
                     reportBuildPolicy: 'ALWAYS',
                     results: [[path: '/Users/admin/Desktop/streaming/allure-reports/working_with_allure']]
             ])
+        }}
 
 
 
-
-    }
-}
-}
+}}
