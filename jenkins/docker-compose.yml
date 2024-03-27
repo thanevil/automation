@@ -7,6 +7,7 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_data:/var/jenkins_home
+      - /Users/admin/Desktop/streaming/allure-reports:/allure-reports
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizzard=false
     restart: unless-stopped
