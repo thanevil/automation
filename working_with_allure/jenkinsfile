@@ -8,7 +8,7 @@ pipeline {
         stage('reports') {
             steps {
                 bat 'xcopy D:\\allure_testing\\allure_results Z:\\allure-reports\\working_with_allure /Y'
-                bat 'xcopy D:\\allure_testing\\allure_results D:\\jenkins\\automation\\workspace\\allure_testing\\allure-report\\allure-results /Y'
+                bat 'xcopy D:\\allure_testing\\allure_results D:\\jenkins\\automation\\workspace\\allure_testing\\allure-results /Y'
                 bat 'del D:\\allure_testing\\allure_results\\* /Q'
                 allure([
                     includeProperties: false,
