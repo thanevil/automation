@@ -1,16 +1,13 @@
-def hosts = []
-for(comp in jenkins.model.Jenkins.instance.slaves) {
-    if(comp.getLabelString().contains('win') && comp.getComputer().isOnline()) {
-        hosts.add(comp.getLabelString().split(' ')[1])
-}}
 node('master') {
     stage('run tests') {
+        agent {label 'win10'}
         steps {
             for(each in hosts) {
                 bat 'python -m pytest D:\\jenkins\\automation\\workspace\\allure_testing\\working_with_allure\\test_dummy.py --alluredir D:\\allure_testing\\allure_results'
             }}
     }
     stage('copy reports') {
+        agent {label 'win10'}
         steps {
             bat 'xcopy D:\\allure_testing\\allure_results Z:\\allure-reports\\working_with_allure'
                 }
