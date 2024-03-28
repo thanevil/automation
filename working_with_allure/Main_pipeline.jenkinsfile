@@ -35,7 +35,10 @@ node('master'){
         }
         catch(err){
             println err
-        }}
+        }
+    catch(err){
+                println(err)}
+                }
 
     stage('reports') {
             script {
