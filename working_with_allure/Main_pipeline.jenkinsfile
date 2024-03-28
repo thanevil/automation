@@ -26,6 +26,8 @@ node('master'){
         else{
             println 'All tests passed'
         }
+    catch(err){
+                println(err)}
     }
 
     stage('get reports'){
@@ -35,10 +37,7 @@ node('master'){
         }
         catch(err){
             println err
-        }
-    catch(err){
-                println(err)}
-                }
+        }}
 
     stage('reports') {
             script {
