@@ -5,6 +5,7 @@ node('master'){
     try{
         stage('save history'){
             try{
+                sh'pwd'
                 sh'cp -a /Users/admin/Desktop/streaming/working_with_allure/allure-results/ /Users/admin/Desktop/streaming/working_with_allure/results-history/'
             }
             catch(err){
