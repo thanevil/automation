@@ -16,18 +16,22 @@ node('master'){
                 sh'cp -a /Users/admin/Desktop/streaming/working_with_allure/allure-results/ /Users/admin/Desktop/streaming/working_with_allure/results-history/'
             }
             catch(err){
-                println(err)}
+                println(err)
+            }
         }
+    catch(err){
+        println(err)
+    }
+    }
     stage('run tests'){
         jobStatus = runTests(hosts)
         currentBuild.result=jobStatus.result
         if(jobStatus.buildVariables.FAILURES) {
-            println 'failed: '+jobStatus.buildVariables.FAILURES}
+            println 'failed: '+jobStatus.buildVariables.FAILURES
+        }
         else{
             println 'All tests passed'
         }
-    catch(err){
-                println(err)}
     }
 
     stage('get reports'){
@@ -37,7 +41,8 @@ node('master'){
         }
         catch(err){
             println err
-        }}
+        }
+    }
 
     stage('reports') {
             script {
@@ -48,7 +53,6 @@ node('master'){
                         reportBuildPolicy: 'ALWAYS',
                         results: [[path: 'D:\\jenkins\\automation\\workspace\\allure-results']]
                 ])
-        }
+            }
     }
-}
 }

@@ -4,11 +4,13 @@ node('master') {
         for(each in hosts) {
             try{
                 bat script:'python -m pytest D:\\jenkins\\automation\\workspace\\allure_testing\\working_with_allure\\test_dummy.py --alluredir D:\\allure_testing\\allure_results'
-        }
+            }
             catch(err) {
                 println err
                 currentBuild.result = 'UNSTABLE'
-        }}}
+            }
+        }
+    }
 
     stage('reports') {
         script {
@@ -19,4 +21,6 @@ node('master') {
                         reportBuildPolicy: 'ALWAYS',
                         results: [[path: '\\allure-results']]
                 ])
-}}}
+        }
+    }
+}
