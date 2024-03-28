@@ -1,0 +1,22 @@
+node('master') {
+    def hosts = HOSTS.split(',') as List
+    stage('run tests') {
+        for(each in hosts) {
+            try{
+                bat script:'python -m pytest D:\\jenkins\\automation\\workspace\\allure_testing\\working_with_allure\\test_dummy.py --alluredir D:\\allure_testing\\allure_results'
+        }
+            catch(err) {
+                println err
+                currentBuild.result = 'UNSTABLE'
+        }}}
+
+    stage('reports') {
+        script {
+                allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '\\allure-results']]
+                ])
+}}}
