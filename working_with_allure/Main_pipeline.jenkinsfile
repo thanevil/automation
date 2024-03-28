@@ -17,7 +17,7 @@ node('master'){
         println(err)
     }
     stage('run tests'){
-        jobStatus = runTests(hosts)
+        jobStatus = build job: 'Run_Tests', wait: true
         currentBuild.result=jobStatus.result
         if(jobStatus.buildVariables.FAILURES) {
             println 'failed: '+jobStatus.buildVariables.FAILURES
