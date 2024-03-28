@@ -6,7 +6,7 @@ node('master'){
         stage('save history'){
             try{
                 sh'pwd'
-                sh'cp -a /Users/admin/Desktop/streaming/working_with_allure/allure-results/ /Users/admin/Desktop/streaming/working_with_allure/results-history/'
+                sh'cp -a /working_with_allure/allure-results/ /working_with_allure/results-history/'
             }
             catch(err){
                 println(err)
@@ -29,7 +29,7 @@ node('master'){
 
     stage('get reports'){
         try{
-            sh'cp -a /home/admin/.jenkins/workspace/Main_pipeline/allure-report/history /home/admin/.jenkins/workspace/Main_pipeline/allure-results/history/'
+            sh'cp -a /home/.jenkins/workspace/Main_pipeline/allure-report/history /home/.jenkins/workspace/Main_pipeline/allure-results/history/'
 
         }
         catch(err){

@@ -1,5 +1,7 @@
+def hosts = agent {
+    label 'win10'
+}
 node('master') {
-    def hosts = HOSTS.split(',') as List
     stage('run tests') {
         for(each in hosts) {
             try{
