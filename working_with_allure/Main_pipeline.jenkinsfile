@@ -1,6 +1,3 @@
-def hosts = agent {
-    label 'win10'
-}
 node('master'){
     try{
         stage('save history'){
@@ -38,7 +35,8 @@ node('master'){
     }
 
     stage('reports') {
-            script {
+            agent {label 'win10'}
+                script {
                 allure([
                         includeProperties: false,
                         jdk: '',
