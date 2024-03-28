@@ -19,9 +19,9 @@ node('master'){
                 println(err)
             }
         }
+    }
     catch(err){
         println(err)
-    }
     }
     stage('run tests'){
         jobStatus = runTests(hosts)
