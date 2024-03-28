@@ -1,14 +1,6 @@
-def runTests(hosts){
-    println "Starting tests"
-    jobStatus = build(job: 'Run_Tests',
-                              propagate: false,
-                              parameters: [
-                                  [$class: 'ExtendedChoiceParameterValue', name: 'HOSTS', value: hosts.join(',')],
-                              ])
-
-    return jobStatus
+def hosts = agent {
+    label 'win10'
 }
-
 node('master'){
     try{
         stage('save history'){
