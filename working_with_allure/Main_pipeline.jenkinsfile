@@ -37,7 +37,7 @@ node('master'){
 
     stage('get reports'){
         try{
-            sh'cp -a /home/.jenkins/workspace/Main_pipeline/allure-report/history /home/.jenkins/workspace/Main_pipeline/allure-results/history/'
+            sh'cp -a /var/jenkins_home/workspace/Main_pipeline/allure-report/history /var/jenkins_home/workspace/Main_pipeline/allure-results/history/'
 
         }
         catch(err){
