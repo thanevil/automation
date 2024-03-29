@@ -53,7 +53,7 @@ node('master'){
                         jdk: '',
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'D:\\jenkins\\automation\\workspace\\allure-results']]
+                        results: [[path: 'Z:\\working_with_allure\\allure-results']]
                 ])
             }
     }
