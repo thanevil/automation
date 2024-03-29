@@ -1,3 +1,13 @@
+def runTests(hosts){
+    println "Starting tests"
+    jobStatus = build(job: 'Run_Tests',
+                              propagate: false,
+                              parameters: [
+                                  [$class: 'ExtendedChoiceParameterValue', name: 'HOSTS', value: hosts.join(',')],
+                              ])
+
+    return jobStatus
+}
 node('master'){
     try{
         stage('save history'){
@@ -14,7 +24,8 @@ node('master'){
         println(err)
     }
     stage('run tests'){
-        jobStatus = build job: 'Run_Tests', wait: true
+//         jobStatus = build job: 'Run_Tests', wait: true
+        jobStatus = runTests(hosts)
         currentBuild.result=jobStatus.result
         if(jobStatus.buildVariables.FAILURES) {
             println 'failed: '+jobStatus.buildVariables.FAILURES
