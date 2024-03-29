@@ -3,7 +3,7 @@ def runTests(hosts){
     jobStatus = build(job: 'Run_Tests',
                               propagate: false,
                               parameters: [
-                                  [$class: 'ExtendedChoiceParameterValue', name: 'HOSTS', value: hosts.join(',')],
+                                  [$class: 'ActiveChoicesReactiveParameter', name: 'HOSTS', value: hosts.join(',')],
                               ])
 
     return jobStatus
