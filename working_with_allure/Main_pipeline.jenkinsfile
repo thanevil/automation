@@ -12,13 +12,17 @@ node('master'){
     try{
         stage('save history'){
             try{
-                sh'pwd'
-                sh'cp -a /var/jenkins_home/workspace/Main_pipeline/allure-report/history /working_with_allure/allure-report/'
+//                 sh'pwd'
+                sh'cp -a /var/jenkins_home/workspace/Main_pipeline/allure-report/history /working_with_allure/Main_pipeline/allure-report/'
+//                 sh'cp -a /var/jenkins_home/workspace/Run_Tests/allure-report/history /working_with_allure/Run_Tests/allure-report/'
             }
             catch(err){
                 println(err)
             }
         }
+        cleanWs()
+        sh'cp -a /working_with_allure/Main_pipeline/allure-report/history /var/jenkins_home/workspace/Main_pipeline/allure-report/'
+//         sh'cp -a /working_with_allure/Run_Tests/allure-report/history /var/jenkins_home/workspace/Run_Tests/allure-report/'
     }
     catch(err){
         println(err)
@@ -35,7 +39,7 @@ node('master'){
         }
     }
 
-    stage('get reports'){
+    stage('copy reports history'){
         try{
             sh'cp -a /var/jenkins_home/workspace/Main_pipeline/allure-report/history /var/jenkins_home/workspace/Main_pipeline/allure-results/history/'
 
@@ -52,7 +56,7 @@ node('master'){
                         jdk: '',
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
-                        results: [[path: '/working_with_allure/allure-results']]
+                        results: [[path: '/var/jenkins_home/workspace/Main_pipeline/allure-results']]
                 ])
             }
     }
