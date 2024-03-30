@@ -41,7 +41,7 @@ node('master'){
 
     stage('fetch allure reports from Run_Tests'){
         script{
-            copyArtifacts(projectName: 'Run_Tests', selector: lastCompleted, filter: '/var/jenkins_home/workspace/Run_Tests/allure-report/*', target: '/var/jenkins_home/workspace/Main_pipeline/allure-report', fingerprintArtifacts: true)
+            copyArtifacts(projectName: 'Run_Tests', selector: lastCompleted, filter: 'allure-report/*', target: '/var/jenkins_home/workspace/Main_pipeline/allure-report', fingerprintArtifacts: true)
         }
     }
 
