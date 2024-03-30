@@ -26,6 +26,7 @@ node('master') {
                         reportBuildPolicy: 'ALWAYS',
                         results: [[path: '/var/jenkins_home/workspace/Run_Tests/allure-results']]
                 ])
+                archiveArtifacts artifacts: '/var/jenkins_home/workspace/Run_Tests/allure-report/*', fingerprint: true
         }
     }
 }
