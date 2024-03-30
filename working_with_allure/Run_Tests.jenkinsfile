@@ -15,7 +15,7 @@ node('master') {
     }
 
     stage('copy allure result') {
-        sh'cp -a /working_with_allure/allure-results/. /var/jenkins_home/workspace/Run_Tests/'
+        sh'cp -a /working_with_allure/allure-results/ /var/jenkins_home/workspace/Run_Tests/'
     }
 
     stage('reports') {
