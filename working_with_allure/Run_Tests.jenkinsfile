@@ -21,11 +21,11 @@ node('master') {
                    timeout(unit: 'SECONDS', time:300) {
                        node(each){
                            dir("."){
-                               stash name: each, includes: "D:\\jenkins\\automation\\workspace\\Run_Tests\\allure-results\\*"
+                               stash name: reports, includes: "D:\\jenkins\\automation\\workspace\\Run_Tests\\allure-results\\*"
                            }
                        }
                        dir('.'){
-                           unstash each
+                           unstash reports
                        }
                    }
                }
