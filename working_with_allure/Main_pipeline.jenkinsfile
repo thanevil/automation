@@ -58,7 +58,7 @@ node('master'){
                     jdk: '',
                     properties: [],
                     reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'Z:\\working_with_allure\\Main_pipeline\\allure-results']]
+                    results: [[path: '\\allure-results']]
             ])
         }
     }
