@@ -13,7 +13,7 @@ node('master'){
         stage('save history'){
             try{
                 sh'pwd'
-                sh'cp -a /working_with_allure/allure-results/ /working_with_allure/results-history/'
+                sh'cp -a /var/jenkins_home/workspace/Main_pipeline/allure-report/history /working_with_allure/allure-report/'
             }
             catch(err){
                 println(err)
@@ -46,14 +46,13 @@ node('master'){
     }
 
     stage('reports') {
-            agent {label 'win10'}
                 script {
                 allure([
                         includeProperties: false,
                         jdk: '',
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'Z:\\working_with_allure\\allure-results']]
+                        results: [[path: '/working_with_allure/allure-results']]
                 ])
             }
     }

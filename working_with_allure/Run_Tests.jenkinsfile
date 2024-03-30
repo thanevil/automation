@@ -4,12 +4,34 @@ node('master') {
         for(each in hosts) {
             node(each){
                 try{
-                    bat script:'python -m pytest D:\\jenkins\\automation\\workspace\\allure_testing\\working_with_allure\\test_dummy.py --alluredir Z:\\working_with_allure\\allure-results'
+                    bat script:'pytest --alluredir=Z:\\working_with_allure\\allure-results D:\\jenkins\\automation\\workspace\\allure_testing\\working_with_allure\\test_dummy.py'
                 }
                 catch(err) {
                     println err
                     currentBuild.result = 'UNSTABLE'
                 }
+            }
+        }
+    }
+
+    stage('get reports') {
+        for(each in hosts) {
+            def hostName = each
+            try {
+                timeout(unit: 'SECONDS', time:300) {
+                    node(hostName){
+                        dir("."){
+                            stash name: hostName, includes: "\\allure-results\\*"
+                        }
+                    }
+                    dir('.'){
+                        unstash hostName
+                    }
+                }
+            } catch(err) {
+                println err
+                currentBuild.result = 'UNSTABLE'
+                failedHosts.add(['host': hostName, 'error': "fail during stash report- ${err}"])
             }
         }
     }
@@ -21,7 +43,7 @@ node('master') {
                         jdk: '',
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
-                        results: [[path: '\\allure-results']]
+                        results: [[path: '/working_with_allure/allure-results']]
                 ])
         }
     }
