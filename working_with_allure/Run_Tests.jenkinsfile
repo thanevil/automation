@@ -14,8 +14,27 @@ node('master') {
         }
     }
 
-    stage('copy allure result') {
-        sh'cp -a /working_with_allure/Run_Tests/allure-results/ /var/jenkins_home/workspace/Run_Tests/'
+    stage('stash and unstash allure results') {
+//         sh 'cp -a /working_with_allure/Run_Tests/allure-results/ /var/jenkins_home/workspace/Run_Tests/'
+           for(each in hosts){
+               def hostName = each
+               try{
+                   timeout(unit: 'SECONDS', time:300) {
+                       node(hostName){
+                           dir("."){
+                               stash name: hostName, includes: "\\allure-results\\*"
+                           }
+                       }
+                       dir('.'){
+                           unstash hostName
+                       }
+                   }
+               }
+               catch(err) {
+                   println err
+                   currentBuild.result = 'UNSTABLE'
+               }
+           }
     }
 
     stage('reports') {
@@ -25,7 +44,7 @@ node('master') {
                         jdk: '',
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
-                        results: [[path: '/var/jenkins_home/workspace/Run_Tests//allure-results']]
+                        results: [[path: '\\allure-results']]
                 ])
         }
     }

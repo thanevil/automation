@@ -21,6 +21,8 @@ node('master'){
             }
         }
         cleanWs()
+        sh "mkdir allure-results"
+        sh "mkdir allure-report"
         sh'cp -a /working_with_allure/Main_pipeline/allure-report/history /var/jenkins_home/workspace/Main_pipeline/allure-report/'
 //         sh'cp -a /working_with_allure/Run_Tests/allure-report/history /var/jenkins_home/workspace/Run_Tests/allure-report/'
     }
@@ -50,14 +52,14 @@ node('master'){
     }
 
     stage('reports') {
-                script {
-                allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'Z:\\working_with_allure\\Main_pipeline\\allure-results']]
-                ])
-            }
+        script {
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'Z:\\working_with_allure\\Main_pipeline\\allure-results']]
+            ])
+        }
     }
 }
