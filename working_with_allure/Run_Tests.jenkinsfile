@@ -14,27 +14,27 @@ node('master') {
         }
     }
 
-    stage('get reports') {
-        for(each in hosts) {
-            def hostName = each
-            try {
-                timeout(unit: 'SECONDS', time:300) {
-                    node(hostName){
-                        dir("."){
-                            stash name: hostName, includes: "Z:\\working_with_allure\\allure-results\\*"
-                        }
-                    }
-                    dir('.'){
-                        unstash hostName
-                    }
-                }
-            } catch(err) {
-                println err
-                currentBuild.result = 'UNSTABLE'
-                failedHosts.add(['host': hostName, 'error': "fail during stash report- ${err}"])
-            }
-        }
-    }
+//     stage('get reports') {
+//         for(each in hosts) {
+//             def hostName = each
+//             try {
+//                 timeout(unit: 'SECONDS', time:300) {
+//                     node(hostName){
+//                         dir("."){
+//                             stash name: hostName, includes: "Z:\\working_with_allure\\allure-results\\*"
+//                         }
+//                     }
+//                     dir('.'){
+//                         unstash hostName
+//                     }
+//                 }
+//             } catch(err) {
+//                 println err
+//                 currentBuild.result = 'UNSTABLE'
+//                 failedHosts.add(['host': hostName, 'error': "fail during stash report- ${err}"])
+//             }
+//         }
+//     }
 
     stage('reports') {
         script {
