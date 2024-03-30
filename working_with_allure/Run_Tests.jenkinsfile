@@ -22,7 +22,7 @@ node('master') {
                    timeout(unit: 'SECONDS', time:300) {
                        node(hostName){
                            dir("."){
-                               stash name: hostName, includes: "\\allure-results\\*"
+                               stash name: hostName, includes: "D:\\jenkins\\automation\\workspace\\Run_Tests\\allure-results\\*"
                            }
                        }
                        dir('.'){
