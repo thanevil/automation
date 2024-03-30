@@ -45,15 +45,15 @@ node('master'){
         }
     }
 
-    stage('copy reports history'){
-        try{
-            sh'cp -a /var/jenkins_home/workspace/Main_pipeline/allure-report/history /var/jenkins_home/workspace/Main_pipeline/allure-results/history/'
-
-        }
-        catch(err){
-            println err
-        }
-    }
+//     stage('copy reports history'){
+//         try{
+//             sh'cp -a /var/jenkins_home/workspace/Main_pipeline/allure-report/history /var/jenkins_home/workspace/Main_pipeline/allure-results/history/'
+//
+//         }
+//         catch(err){
+//             println err
+//         }
+//     }
 
     stage('reports') {
         script {
