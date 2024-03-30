@@ -17,16 +17,15 @@ node('master') {
     stage('stash and unstash allure results') {
 //         sh 'cp -a /working_with_allure/Run_Tests/allure-results/ /var/jenkins_home/workspace/Run_Tests/'
            for(each in hosts){
-               def hostName = each
                try{
                    timeout(unit: 'SECONDS', time:300) {
-                       node(hostName){
+                       node(each){
                            dir("."){
-                               stash name: hostName, includes: "D:\\jenkins\\automation\\workspace\\Run_Tests\\allure-results\\*"
+                               stash name: each, includes: "D:\\jenkins\\automation\\workspace\\Run_Tests\\allure-results\\*"
                            }
                        }
                        dir('.'){
-                           unstash hostName
+                           unstash each
                        }
                    }
                }
