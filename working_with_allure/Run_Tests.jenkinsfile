@@ -4,7 +4,7 @@ node('master') {
         for(each in hosts) {
             node(each){
                 try{
-                    bat script:'pytest --alluredir=D:\\jenkins\\automation\\workspace\\Run_Tests\\allure-results D:\\jenkins\\automation\\workspace\\allure_testing\\working_with_allure\\test_dummy.py'
+                    bat script:'pytest --alluredir=Z:\\working_with_allure\\Run_Tests\\allure-results D:\\jenkins\\automation\\workspace\\allure_testing\\working_with_allure\\test_dummy.py'
                 }
                 catch(err) {
                     println err
@@ -14,27 +14,8 @@ node('master') {
         }
     }
 
-    stage('stash and unstash allure results') {
-//         sh 'cp -a /working_with_allure/Run_Tests/allure-results/ /var/jenkins_home/workspace/Run_Tests/'
-           for(each in hosts){
-               try{
-                   timeout(unit: 'SECONDS', time:300) {
-                       node(each){
-                           dir("."){
-                               stash name: reports, includes: "D:\\jenkins\\automation\\workspace\\Run_Tests\\allure-results\\*"
-                           }
-                       }
-                       dir('.'){
-                           unstash reports
-                       }
-                   }
-               }
-               catch(err) {
-                   println err
-                   currentBuild.result = 'UNSTABLE'
-               }
-           }
-    }
+    stage('copy allure results from share to workspace') {
+        sh 'cp -a /working_with_allure/Run_Tests/allure-results/ /var/jenkins_home/workspace/Run_Tests/'
 
     stage('reports') {
         script {
@@ -43,7 +24,7 @@ node('master') {
                         jdk: '',
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
-                        results: [[path: '\\allure-results']]
+                        results: [[path: '/var/jenkins_home/workspace/Run_Tests/allure-results']]
                 ])
         }
     }
