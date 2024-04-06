@@ -6,11 +6,8 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - jenkins_data:/var/jenkins_home
+      - /Users/admin/Desktop/streaming/jenkins_data/jenkins_home:/var/jenkins_home
       - /Users/admin/Desktop/streaming/working_with_allure:/working_with_allure
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizzard=false
     restart: unless-stopped
-
-volumes:
-  jenkins_data:
