@@ -1,0 +1,15 @@
+tar xvf node_exporter-1.7.0.linux-amd64.tar.gz
+cd node_exporter-1.7.0.linux-amd64
+sudo cp node_exporter /usr/local/bin
+rm -rf ./node_exporter-1.7.0.linux-amd64
+chmod 777 node_exporter
+
+sudo dscl . -create /Groups/_node_exporter
+sudo dscl . -create /Groups/_node_exporter PrimaryGroupID 300
+
+
+ sudo dscl . -create /Users/_node_exporter UniqueID 300
+ sudo dscl . -create /Users/_node_exporter PrimaryGroupID 300
+ sudo dscl . -create /Users/_node_exporter UserShell /usr/bin/false
+
+ sudo chown _node_exporter:_node_exporter /usr/local/bin/node_exporter

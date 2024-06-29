@@ -8,15 +8,23 @@ if not os.path.exists(r'D:\allure_testing\logs'):
 
 class Logs:
 
-    @staticmethod
-    def dummy_test(event, logger_name, logger_file, log_file):
-        logger = logging.getLogger(logger_name)
-        file_handler = logging.FileHandler(logger_file)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    def __init__(self, logger_name, logger_file):
+        self.logger_name = logger_name
+        self.logger_file = logger_file
+
+    def logger(self):
+        logger = logging.getLogger(self.logger_name)
+        file_handler = logging.FileHandler(self.logger_file)
+        formatter=logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
         file_handler.setLevel(logging.DEBUG)
         logger.setLevel(logging.DEBUG)
+class Dummy:
+
+    @staticmethod
+    def dummy_test(event, logger_name, logger_file, log_file):
+        Logs(logger_name, logger_file).logger()
         logger.info('starting test')
         log = GeneralFunctions.read_from_logs(event, log_file)
         logger.debug(log)
